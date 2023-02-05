@@ -1,6 +1,7 @@
 # Project specific files
 data/.access.db
 data/.credentials.sh
+.evBattery_env/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
