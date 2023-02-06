@@ -1,14 +1,16 @@
 #!/usr/bin/env bash
 
 DIR=$PWD
-WD=$(dirname ${BASH_SOURCE[0]})
+EV_DIR=$(dirname ${BASH_SOURCE[0]})
 
-source $WD/.evBattery_env/bin/activate
-source $WD/data/.credentials.sh
-cd $WD/src
+cd $EV_DIR
+source .evBattery_env/bin/activate
+source data/.credentials.sh
+cd src
 python get_battery_stats.py
 
 # Back data up on Github
+cd $EV_DIR
 git checkout data
 git add data/car_stats.jsonl
 git commit -m "update(data): push updated car stats"
