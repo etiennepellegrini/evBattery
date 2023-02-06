@@ -17,13 +17,18 @@ Install dependencies (preferably in a virtual environment, such as
 
 ## Authentication
 
-Create a file at `data/.credentials.sh` containing:
+First, you will need to create an account with [Smartcar][]. 
+Follow their instructions under `Retrieve your credentials` to setup a client ID and secret.
+Set your [Smartcar][] redirect URI to `http://localhost:8000/exchange`.
+
+Once the [Smartcar][] setup is done, create a file at `data/.credentials.sh`[^1] containing:
 
 ```
 export SMARTCAR_CLIENT_ID=<your-client-id>
 export SMARTCAR_CLIENT_SECRET=<your-client-secret>
 export SMARTCAR_REDIRECT_URI=http://localhost:8000/exchange
 ```
+[^1]: :warning **DO NOT ADD THIS FILE TO SOURCE CONTROL!** It contains personal credentials :warning:
 
 Source it:
 
@@ -40,6 +45,9 @@ Start the main "web app" to authorize Smartcar (one time only):
 
 Open a web browser to `http://localhost:8000/login` and follow the
 instructions.
+
+A correct authentication ultimately redirects you to `http://localhost:8000/vehicle`.
+A file should be created at `data/.acces.db`[^1] containing your access token data. 
 
 ## Usage
 
@@ -63,3 +71,5 @@ The script follows the following steps:
 1. Source the environment activation script
 2. Run `ev_battery_stats.py`
 3. Switch to the `data` branch and save `car_stats.jsonl`
+
+[Smartcar]: https://www.smartcar.com
