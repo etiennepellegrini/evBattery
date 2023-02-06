@@ -2,6 +2,8 @@ Periodically check EV stats using the smartcar.com API
 
 ## Setup
 
+### Install
+
 Fork or clone this repository:
 
 ```console
@@ -15,7 +17,7 @@ Install dependencies (preferably in a virtual environment, such as
 (.evBattery_env) $ pip install -r requirements.txt
 ```
 
-## Authentication
+### Authentication (one-time only)
 
 First, you will need to create an account with [Smartcar][]. 
 Follow their instructions under `Retrieve your credentials` to setup a client ID and secret.
@@ -28,7 +30,7 @@ export SMARTCAR_CLIENT_ID=<your-client-id>
 export SMARTCAR_CLIENT_SECRET=<your-client-secret>
 export SMARTCAR_REDIRECT_URI=http://localhost:8000/exchange
 ```
-[^1]: :warning **DO NOT ADD THIS FILE TO SOURCE CONTROL!** It contains personal credentials :warning:
+[^1]: :warning: **DO NOT ADD THIS FILE TO SOURCE CONTROL!** It contains personal credentials :warning:
 
 Source it:
 
@@ -71,5 +73,15 @@ The script follows the following steps:
 1. Source the environment activation script
 2. Run `ev_battery_stats.py`
 3. Switch to the `data` branch and save `car_stats.jsonl`
+
+### Automated periodic save
+
+I use [cron](https://pubs.opengroup.org/onlinepubs/9699919799/utilities/crontab.html) in order to save my car stats periodically.
+
+```cron
+0 */8 * * * /path/to/evBattery/get_battery_stats.sh &> $HOME/.cache/evBattery.log
+```
+
+*Note*: A free [Smartcar][] account only allows 300 API calls per car per month, or 10 calls per day. The current `evBattery.py` script makes 2 calls (one to the `odometer` endpoint, one to the `battery` endpoint. I therefore set my `cron` job to run every 8 hours or 3 times a day.
 
 [Smartcar]: https://www.smartcar.com
