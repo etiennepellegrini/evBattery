@@ -11,7 +11,7 @@ $ git clone git@github.com:etiennepellegrini/evBattery
 ```
 
 Install dependencies (preferably in a virtual environment, such as
-`evBattery/.evBattery_env`
+`evBattery/.evBattery_env`)
 
 ```console
 (.evBattery_env) $ pip install -r requirements.txt
@@ -71,7 +71,7 @@ $ ./get_battery_stats.sh
 The script follows the following steps:
 
 1. Source the environment activation script
-2. Run `ev_battery_stats.py`
+2. Run `get_battery_stats.py`
 3. Switch to the `data` branch and save `car_stats.jsonl`
 
 ### Automated periodic save

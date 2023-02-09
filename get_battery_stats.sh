@@ -1,18 +1,23 @@
 #!/usr/bin/env bash
 
+# --- Env
 DIR=$PWD
 EV_DIR=$(realpath $(dirname ${BASH_SOURCE[0]}))
 
+# Activate virtual env, source smartcar credentials
 cd $EV_DIR
 source .evBattery_env/bin/activate
 source data/.credentials.sh
+
+# --- Call to evBattery
+# Checkout data branch (to append to latest version of database)
+git checkout data
 cd src
 python get_battery_stats.py
 
 # --- Back data up
 # Local source control
 cd $EV_DIR
-git checkout data
 git add data/car_stats.jsonl
 git commit -m "update(data): push updated car stats"
 
