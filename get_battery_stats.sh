@@ -8,6 +8,11 @@ EV_DIR=$(realpath $(dirname ${BASH_SOURCE[0]}))
 cd $EV_DIR
 source .evBattery_env/bin/activate
 source data/.credentials.sh
+# Set TZ
+TZ=$(readlink /etc/localtime)
+export TZ=${TZ##*zoneinfo/}
+
+
 
 # --- Call to evBattery
 # Checkout data branch (to append to latest version of database)
@@ -25,7 +30,7 @@ git commit -m "update(data): push updated car stats"
 # Requires authentication into Github
 
 # Using keychain
-KEY="/usr/local/bin/keychain"
+KEY="$HOME/.linuxbrew/bin/keychain"
 if [[ -x $KEY ]]; then
     eval $($KEY --eval --agents "ssh" $HOME/.ssh/github)
 
