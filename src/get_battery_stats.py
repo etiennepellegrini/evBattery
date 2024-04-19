@@ -1,4 +1,3 @@
-
 # ======================================================================
 #
 # Section 392 Navigation and Mission Design
@@ -23,7 +22,7 @@ import evBattery
 # Place all imports before here.
 # ======================================================================
 
-stats = evBattery.vehicle()
+stats = evBattery.get_vehicle_stats()
 print(stats)
 
 with jsonlines.open("../data/car_stats.jsonl", mode="a") as writer:

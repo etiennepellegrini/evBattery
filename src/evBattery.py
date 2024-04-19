@@ -174,18 +174,30 @@ def vehicle():
         options={"unit_system": units},
     )
 
+    return vehicle
+
+
+
+# ----------------------------------------------------------------------
+def get_vehicle_stats():
+    # Create vehicle object
+    car = vehicle()
+
     # --- Request Step 4: Make a request to Smartcar API
-    odometer = vehicle.odometer()
-    battery = vehicle.battery()
+    odometer = car.odometer()
+    battery = car.battery()
 
     # --- Output
-    # Create output dict
+    # Queried statistics
     stats_dict = {
         "date": datetime.datetime.now().isoformat(),
         "odometer": odometer.distance,
         "battery_level": battery.percent_remaining,
         "battery_range": battery.range,
     }
+    # Computed statistics
+    stats_dict['max_range'] = battery.range / battery.percent_remaining
+
 
     # Jsonify depends on a Flask app being active.
     # For general use, return a dict and handle it differently depending on
@@ -193,7 +205,6 @@ def vehicle():
     # return jsonify(stats_dict)
 
     return stats_dict
-
 
 # ======================================================================
 #                                 MAIN
