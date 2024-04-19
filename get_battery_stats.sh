@@ -12,8 +12,6 @@ source data/.credentials.sh
 TZ=$(readlink /etc/localtime)
 export TZ=${TZ##*zoneinfo/}
 
-
-
 # --- Call to evBattery
 # Checkout data branch (to append to latest version of database)
 git checkout data
@@ -30,9 +28,9 @@ git commit -m "update(data): push updated car stats"
 # Requires authentication into Github
 
 # Using keychain
-KEY="$HOME/.linuxbrew/bin/keychain"
+KEY="$(brew --prefix)/bin/keychain"
 if [[ -x $KEY ]]; then
-    eval $($KEY --eval --agents "ssh" $HOME/.ssh/github)
+    eval $($KEY --eval --agents "ssh" $HOME/.ssh/github.com_nopass)
 
 # No keychain - use ssh-agent directly
 else
