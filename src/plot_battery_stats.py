@@ -15,6 +15,7 @@ __author__ = 'Etienne Pellegrini (392M)'
 # ======================================================================
 # Place all imports after here.
 #
+import datetime
 import jsonlines
 import matplotlib.dates as mdates
 import matplotlib.pyplot as plt
@@ -39,12 +40,14 @@ date_num = []
 for date in stats["date"]:
     date_num.append(mdates.datestr2num(date))
 
+date_num = date_num - date_num[0]
+
 stats["date_num"] = date_num
 
 # ----------------------------------------------------------------------
 # Plots
 # ----------------------------------------------------------------------
-def plot(x, y):
+def plot(x, y, label="stats"):
 
     # Ensure compatible lengths
     if len(x) > len(y):
@@ -61,10 +64,15 @@ def plot(x, y):
     ax.xaxis.set_minor_locator(mdates.MonthLocator())
 
     plt.tight_layout()
+    plt.savefig(
+        f"{label}_{datetime.datetime.now().strftime('%Y%m%d')}",
+        dpi=300,
+        bbox_inches='tight'
+    )
 
 
 # ----------------------------------------------------------------------
-plot(stats["date_num"], stats["max_range"])
-plot(stats["date_num"], stats["odometer"])
+plot(stats["date_num"], stats["max_range"], "max_range")
+plot(stats["date_num"], stats["odometer"], "odometer")
 
 plt.show()
