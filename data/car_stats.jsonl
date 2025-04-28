@@ -2540,3 +2540,4 @@
 {"date": "2025-04-27T07:00:42.200681", "odometer": 11502.879434104827, "battery_level": 0.549, "battery_range": 148.51, "max_range": 270.5100182149362}
 {"date": "2025-04-27T14:00:29.922483", "odometer": 11502.879434104827, "battery_level": 0.549, "battery_range": 148.51, "max_range": 270.5100182149362}
 {"date": "2025-04-27T20:00:33.315468", "odometer": 11528.846536228426, "battery_level": 0.419, "battery_range": 106.88, "max_range": 255.0835322195704}
+{"date": "2025-04-27T21:00:40.408254", "odometer": 11528.846536228426, "battery_level": 0.419, "battery_range": 107.5, "max_range": 256.563245823389}
